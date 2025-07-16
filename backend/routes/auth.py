@@ -3,6 +3,7 @@ from flask import Blueprint, request, jsonify
 from models import User
 from flask_jwt_extended import create_access_token
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_jwt_extended import jwt_required
 
 auth = Blueprint('auth', __name__)
 
@@ -24,3 +25,11 @@ def login():
         return jsonify({"msg": "Invalid credentials"}), 401
     token = create_access_token(identity=str(user.id))
     return jsonify(access_token=token)
+
+
+@auth.route('/logout', methods=['POST'])
+@jwt_required()
+def logout():
+    # สำหรับ JWT ทั่วไป server จะไม่ track session, 
+    # แค่บอก client ให้ลบทิ้งพอ
+    return jsonify({"msg": "Logged out successfully"}), 200
