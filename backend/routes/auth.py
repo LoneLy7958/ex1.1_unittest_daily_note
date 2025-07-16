@@ -33,3 +33,5 @@ def logout():
     # สำหรับ JWT ทั่วไป server จะไม่ track session, 
     # แค่บอก client ให้ลบทิ้งพอ
     return jsonify({"msg": "Logged out successfully"}), 200
+
+# sdfpoikgjmsrfopgjsri0jgo[psdfrgu]
